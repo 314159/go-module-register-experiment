@@ -4,18 +4,16 @@ import "fmt"
 
 // example of a backend that doesn't require its own package
 
-func init() {
-	Register("backend2", New())
-}
-
 type backend2 struct{}
 
-func New() Backend {
-	return &backend2{}
+const backend2Name = "backend2"
+
+func init() {
+	Register(backend2Name, &backend2{})
 }
 
 func (b backend2) Name() string {
-	return "backend2"
+	return backend2Name
 }
 
 func (b backend2) Process() error {

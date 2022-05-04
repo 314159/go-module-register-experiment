@@ -5,5 +5,5 @@ package backends
 import "github.com/314159/go-module-register-experiment/backends/backend1"
 
 func init() {
-	Register("backend1", backend1.New())
+	Register(backend1.BackendName, backend1.New())
 }

@@ -16,10 +16,20 @@ func main() {
 	if err != nil {
 		panic(err.Error())
 	}
+	backend3, err := backends.GetBackend("backend3")
+	if err != nil {
+		panic(err.Error())
+	}
 	if err := backend1.Process(); err != nil {
 		panic(err.Error())
 	}
 	if err := backend2.Process(); err != nil {
 		panic(err.Error())
+	}
+	if err := backend3.Process(); err != nil {
+		panic(err.Error())
+	}
+	if _, err := backends.GetBackend("unknown"); err == nil {
+		panic("Oops, request for unknown backend succeeded!")
 	}
 }
