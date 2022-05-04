@@ -15,14 +15,14 @@ type Handler interface {
 	Process() error
 }
 
-var registeredHandlers = make(map[string]Handler)
+var registry = make(map[string]Handler)
 
 func Register(name string, backend Handler) {
-	registeredHandlers[name] = backend
+	registry[name] = backend
 }
 
 func GetHandler(name string) (Handler, error) {
-	if backend, ok := registeredHandlers[name]; ok {
+	if backend, ok := registry[name]; ok {
 		return backend, nil
 	}
 

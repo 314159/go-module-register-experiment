@@ -11,14 +11,14 @@ type Backend interface {
 	Process() error
 }
 
-var registeredBackends = make(map[string]Backend)
+var registry = make(map[string]Backend)
 
 func Register(name string, backend Backend) {
-	registeredBackends[name] = backend
+	registry[name] = backend
 }
 
 func GetBackend(name string) (Backend, error) {
-	if backend, ok := registeredBackends[name]; ok {
+	if backend, ok := registry[name]; ok {
 		return backend, nil
 	}
 
