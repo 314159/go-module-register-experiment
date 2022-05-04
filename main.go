@@ -4,6 +4,7 @@ import (
 	"fmt"
 
 	"github.com/314159/go-module-register-experiment/backends"
+	"github.com/314159/go-module-register-experiment/handlers"
 )
 
 func main() {
@@ -32,4 +33,16 @@ func main() {
 	if _, err := backends.GetBackend("unknown"); err == nil {
 		panic("Oops, request for unknown backend succeeded!")
 	}
+	handler1, err := handlers.GetHandler("handler1")
+	if err != nil {
+		panic(err.Error())
+	}
+	handler1.Process()
+
+	handler2, err := handlers.GetHandler("handler2")
+	if err != nil {
+		panic(err.Error())
+	}
+	handler2.Process()
+
 }
